@@ -56,6 +56,9 @@ export const initialise = async () => {
     debug("creating list route");
     router.get('/list', getCredentials);
 
+    debug('creating static asset route');
+    app.use(express.static('./dist'));
+
     const PORT = process.env.PORT ? Number.parseInt(process.env.PORT) : 5000
     const ADDRESS = process.env.LISTEN_ADDRESS ?? '0.0.0.0'
     debug("listening to server at " + PORT);
