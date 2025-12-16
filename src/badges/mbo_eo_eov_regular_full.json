@@ -1,0 +1,120 @@
+{
+    "@context": [
+      "https://www.w3.org/ns/credentials/v2",
+      "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+      "https://raw.githubusercontent.com/educredentials/obv3-examples/refs/heads/main/contexts/educredential.json"
+    ],
+    "id": "http://example.com/credentials/crd-MBN3PQ",
+    "type": [
+      "VerifiableCredential",
+      "OpenBadgeCredential"
+    ],
+    "issuer": {
+      "id": "https://www.edubadges.nl/public/issuers/iss-4B0B1A",
+      "type": [
+        "Profile"
+      ],
+      "name": "MBO Beek",
+      "otherIdentifier": [
+        {
+          "type": "IdentifierEntry",
+          "identifier": "4B0B1A",
+          "identifierType": "ext:BRIN"
+        },
+        {
+          "type": "IdentifierEntry",
+          "identifier": "mbobeek.example.edu",
+          "identifierType": "name"
+        }
+      ],
+      "address": {
+        "type": [
+          "Address"
+        ],
+        "addressCountry": "The Netherlands",
+        "addressCountryCode": "NL",
+        "addressLocality": "Beek",
+        "streetAddress": "Rijksweg 13",
+        "postalCode": "1337 JX"
+      }
+    },
+    "validFrom": "2024-08-30T00:00:00Z",
+    "validUntil": "2029-08-30T00:00:00Z",
+    "credentialSubject": {
+      "id": "https://example.com/credentials/crd-MBN3PQ#subject",
+      "type": [
+        "AchievementSubject"
+      ],
+      "achievement": {
+        "id": "https://example.com/achievements/ach-77NPN",
+        "type": [
+          "Achievement",
+          "EducredentialAchievement"
+        ],
+        "criteria": {
+          "narrative": "De student heeft de ultieme beheersing van subtiele verkooptechnieken en kan mensen producten laten kopen die ze niet dachten nodig te hebben."
+        },
+        "description": "Dit diploma geeft jou de ultieme macht om mensen producten te laten kopen die ze nooit dachten nodig te hebben, inclusief de ‘ik koop het nu’-blik.",
+        "name": "Diploma master in subtiele verkoopkunst",
+        "image": {
+          "id": "https://raw.githubusercontent.com/educredentials/obv3-examples/refs/heads/main/images/verkoopkunst.jpg",
+          "type": "Image"
+        },
+        "inLanguage": "nl-NL",
+        "educationProgramIdentifier": 20121345,
+        "SBU": 3000,
+        "resultDescription": [
+          {
+            "id": "https://example.com/results/ects-nl-NL-A1B2C3",
+            "type": [
+              "ResultDescription"
+            ],
+            "valueMax": "10",
+            "valueMin": "1",
+            "name": "Average of final exams",
+            "requiredValue": "6",
+            "resultType": "ext:ECTSGradeScore"
+          }
+        ],
+        "alignment": [
+          {
+            "type": [
+              "Alignment"
+            ],
+            "targetType": "ext:EQF",
+            "targetName": "EQF level 5",
+            "targetCode": "5",
+            "targetUrl": "https://content.example.com/description-eqf-levels"
+          }
+        ],
+        "participationType": "onsite or blended",
+        "assessmentType": "testing",
+        "supervisionType": "onsite with identity verification",
+        "identityChecked": true
+      },
+      "result": [
+        {
+          "type": [
+            "Result"
+          ],
+          "resultDescription": "https://example.com/results/ects-nl-NL-A1B2C3",
+          "value": "8.8"
+        }
+      ]
+    },
+    "credentialSchema": [
+      {
+        "id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
+        "type": "1EdTechJsonSchemaValidator2019"
+      },
+      {
+        "id": "https://raw.githubusercontent.com/educredentials/obv3-examples/refs/heads/main/schemas/regular.json",
+        "type": "1EdTechJsonSchemaValidator2019"
+      },
+      {
+        "id": "https://raw.githubusercontent.com/educredentials/obv3-examples/refs/heads/main/schemas/regular_sbu.json",
+        "type": "1EdTechJsonSchemaValidator2019"
+      }
+    ]
+  }
+  
