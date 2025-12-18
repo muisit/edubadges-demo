@@ -7,25 +7,33 @@ import { Request, Response } from 'express'
 import { v4 } from 'uuid';
 
 interface OfferRequest {
-    badge:string;
+    badge:any;
 }
 
 export async function getOffer(request: Request<OfferRequest>, response: Response) {
     try {
         debug("creating offer for badge ", request.body.badge);
         const session = getSessionById('');
-        session.badgeid = request.body.badge;
-        const store = getDocumentStore();
-        const doc = store.get(session.badgeid ?? '');
-        if (!doc) {
-            debug("badge not available");
-            try {
-                session.badge = JSON.parse(request.body.badge);
-                delete session.badgeid;
+        if (typeof (request.body.badge) == 'string') {
+            session.badgeid = request.body.badge;
+            const store = getDocumentStore();
+            const doc = store.get(session.badgeid ?? '');
+            if (!doc) {
+                debug("badge not available");
+                try {
+                    session.badge = JSON.parse(request.body.badge);
+                    delete session.badgeid;
+                }
+                catch (e) {
+                    return response.status(404).json({error:"Badge not found"});
+                }
             }
-            catch (e) {
-                return response.status(404).json({error:"Badge not found"});
-            }
+        }
+        else if (request.body.badge && Object.keys(request.body.badge).length) {
+            session.badge = request.body.badge;
+        }
+        else {
+            return response.status(404).json({error:"Invalid badge specification"});
         }
 
         // create the offer in the back-end
