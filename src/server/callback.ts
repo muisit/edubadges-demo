@@ -25,8 +25,18 @@ export async function callback(request: Request<CallbackRequest>, response: Resp
         }
 
         // retrieve the example badge based on the badge id in the session
-        const store = getDocumentStore();
-        const badge = store.get(session.badgeid!);
+        let badge:any = null;
+        if (session.badgeid) {
+            const store = getDocumentStore();
+            badge = store.get(session.badgeid!);
+        }
+        if ((!badge || !Object.keys(badge).length) && session.badge) {
+            badge = session.badge;
+        }
+
+        if (!badge) {
+            return response.status(404).json({error:"Could not find data"});
+        }
 
         debug('Callback: returning badge', badge);
         return response.status(200).json(badge);

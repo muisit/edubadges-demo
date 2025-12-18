@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 export interface Session {
     id:string;
     badgeid?:string;
+    badge?:any;
     issuer_session?:string;
     issuer_state?:string;
     offer_url?:string;

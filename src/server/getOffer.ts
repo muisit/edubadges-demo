@@ -7,7 +7,7 @@ import { Request, Response } from 'express'
 import { v4 } from 'uuid';
 
 interface OfferRequest {
-    badge:string
+    badge:string;
 }
 
 export async function getOffer(request: Request<OfferRequest>, response: Response) {
@@ -19,7 +19,13 @@ export async function getOffer(request: Request<OfferRequest>, response: Respons
         const doc = store.get(session.badgeid ?? '');
         if (!doc) {
             debug("badge not available");
-            return response.status(404).json({error:"Badge not found"});
+            try {
+                session.badge = JSON.parse(request.body.badge);
+                delete session.badgeid;
+            }
+            catch (e) {
+                return response.status(404).json({error:"Badge not found"});
+            }
         }
 
         // create the offer in the back-end
