@@ -1,6 +1,5 @@
 import { getDocumentStore } from '@/badges/store';
-import { getSessionById, updateSession } from '@/sessions'
-import { Request, Response } from 'express'
+import { Response } from 'express'
 
 interface OfferRequest {
     badge:string
