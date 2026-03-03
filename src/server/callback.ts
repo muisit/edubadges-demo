@@ -13,7 +13,7 @@ interface CallbackRequest {
 export async function callback(request: Request<CallbackRequest>, response: Response) {
     try {
         debug('Callback for session', request.params.session);
-        debug('Callback user', request.body.user_id,' and state ', request.body.state);
+        debug('Callback user', request.body);
         const session = getSessionById(request.params.session);
         if (!session.issuer_state) {
             debug("no issuer state in the session, not a valid session");
